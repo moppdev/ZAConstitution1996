@@ -1,6 +1,0 @@
-@Constitution1996API_HostAddress = http://localhost:5056
-
-GET {{Constitution1996API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

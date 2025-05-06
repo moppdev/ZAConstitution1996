@@ -1,0 +1,1 @@
+--SELECT SectionTitle FROM Constitution1996.MainSchema.Sections WHERE ChapterID = 2;
