@@ -18,7 +18,7 @@ GO
 CREATE OR ALTER PROCEDURE MainSchema.spGetPreamble
 AS
 BEGIN
-	SELECT SectionTitle, SectionText FROM MainSchema.Sections WHERE SectionID = 0; /* Get preamble */
+	SELECT SectionTitle AS Title, SectionText AS PreambleContents FROM MainSchema.Sections WHERE SectionID = 0; /* Get preamble */
 END
 GO
 
