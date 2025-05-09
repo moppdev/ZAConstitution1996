@@ -8,7 +8,7 @@ namespace Constitution1996API.DataHandling
     public class MainRepository : IMainRepository
     {
         // Create a variable for the context/database connection class
-        EntityFrameworkDataContext _entityFramework;
+        private readonly EntityFrameworkDataContext _entityFramework;
 
         // Constructor for the class
         // Create a new instance of the connection and save it to the variable above
@@ -17,28 +17,39 @@ namespace Constitution1996API.DataHandling
             _entityFramework = new EntityFrameworkDataContext(config);
         }
 
-        // Gets the Preamble of the Constitution
-        public Preamble GetPreamble()
+         // Gets the Preamble of the Constitution
+        public async Task<Preamble> GetPreamble()
         {
-            return _entityFramework.Preamble.FromSqlRaw($"[MainSchema].spGetPreamble").AsEnumerable<Preamble>().First();
+            var list = await _entityFramework.Preamble
+                .FromSqlRaw("[MainSchema].spGetPreamble")
+                .ToListAsync();
+
+            return list.FirstOrDefault();
         }
+
 
         // Gets the Chapters' IDs and corresponding titles
-        public IEnumerable<Chapter> GetChapters()
+        public async Task<IEnumerable<Chapter>> GetChapters()
         {
-            return _entityFramework.Chapters.FromSqlRaw($"[MainSchema].spGetChapters");
+            return await _entityFramework.Chapters
+                .FromSqlRaw("[MainSchema].spGetChapters")
+                .ToListAsync();
         }
 
-        // Gets all Sections' titles, ids, chapter ids and text if the field isn't null
-        public IEnumerable<Section> GetSections()
+         // Gets all Sections' titles, ids, chapter ids and text if the field isn't null
+        public async Task<IEnumerable<Section>> GetSections()
         {
-            return _entityFramework.Sections.FromSqlRaw($"[MainSchema].spGetSections");
+            return await _entityFramework.Sections
+                .FromSqlRaw("[MainSchema].spGetSections")
+                .ToListAsync();
         }
 
         // Gets the contents of the Non Derogable Rights table in the Bill of Rights (Chapter 2)
-        public IEnumerable<NonDerogableRight> GetNonDerogableRights()
+        public async Task<IEnumerable<NonDerogableRight>> GetNonDerogableRights()
         {
-            return _entityFramework.NonDerogableRights.FromSqlRaw($"[MainSchema].spGetNonDerogableRights");
+            return await _entityFramework.NonDerogableRights
+                .FromSqlRaw("[MainSchema].spGetNonDerogableRights")
+                .ToListAsync();
         }
     }
 }

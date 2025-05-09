@@ -24,9 +24,16 @@ namespace Constitution1996API.Controllers
 
         // GET request that returns all amendments to the Constitution to date
         [HttpGet("all")]
-        public IEnumerable<Amendment> GetAmendments()
+        public async Task<ActionResult<IEnumerable<Amendment>>> GetAmendments()
         {
-            return _amendmentRepository.GetAmendments();
+            IEnumerable<Amendment> amendments = await _amendmentRepository.GetAmendments();
+
+            if (amendments == null || !amendments.Any())
+            {
+                return NotFound();
+            }
+
+            return amendments.ToList();
         }
     }
 }

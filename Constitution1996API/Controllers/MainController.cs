@@ -24,30 +24,72 @@ namespace Constitution1996API.Controllers
 
         // GET request that returns the Preamble to the Constitution
         [HttpGet("preamble")]
-        public Preamble GetPreamble()
+        public async Task<ActionResult<Preamble>> GetPreamble()
         {
-            return _mainRepository.GetPreamble();
+            // async load the method
+            Preamble preamble = await _mainRepository.GetPreamble();
+
+            // check if result is null or empty
+            if (preamble == null)
+            {
+                // return 404
+                return NotFound();
+            }
+            
+            // Else, return result
+            return preamble;
         }
 
         // GET request that returns the Preamble to the Constitution
         [HttpGet("chapters/all")]
-        public IEnumerable<Chapter> GetChapters()
+        public async Task<ActionResult<IEnumerable<Chapter>>> GetChapters()
         {
-            return _mainRepository.GetChapters();
+            // async load the method
+            IEnumerable<Chapter> chapters = await _mainRepository.GetChapters();
+
+            // check if result is null or empty
+            if (chapters == null || !chapters.Any())
+            {
+                // return 404
+                return NotFound();
+            }
+
+             // Else, return result
+            return chapters.ToList();
         }
 
-         // GET request that returns all sections' titles, ids and chapter ids
+         // GET request that returns all sections' titles, ids and text if not null
         [HttpGet("sections/all")]
-        public IEnumerable<Section> GetSections()
+        public async Task<ActionResult<IEnumerable<Section>>> GetSections()
         {
-            return _mainRepository.GetSections();
+            // async load the method
+            IEnumerable<Section> sections = await _mainRepository.GetSections();
+
+            // check if result is null or empty
+            if (sections == null || !sections.Any())
+            {
+                return NotFound();
+            }
+
+            // Else, return result
+            return sections.ToList();
         }
 
          // GET request that returns the Non Derogable Rights table from the Bill of Rights (Chapter 2)
         [HttpGet("ndr/all")]
-        public IEnumerable<NonDerogableRight> GetNonDerogableRights()
+        public async Task<ActionResult<IEnumerable<NonDerogableRight>>> GetNonDerogableRights()
         {
-            return _mainRepository.GetNonDerogableRights();
+            // async load the method
+            IEnumerable<NonDerogableRight> nonDerogableRights = await _mainRepository.GetNonDerogableRights();
+
+            // check if result is null or empty
+            if (nonDerogableRights == null || !nonDerogableRights.Any())
+            {
+                return NotFound();
+            }
+
+            // Else, return result
+            return nonDerogableRights.ToList();
         }
     }
 }

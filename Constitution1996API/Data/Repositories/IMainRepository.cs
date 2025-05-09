@@ -6,9 +6,9 @@ namespace Constitution1996API.DataHandling
     public interface IMainRepository
     {
         // methods
-        public Preamble GetPreamble();
-        public IEnumerable<Chapter> GetChapters();
-        public IEnumerable<Section> GetSections();
-        public IEnumerable<NonDerogableRight> GetNonDerogableRights();
+        public Task<Preamble> GetPreamble();
+        public Task<IEnumerable<Chapter>> GetChapters();
+        public Task<IEnumerable<Section>> GetSections();
+        public Task<IEnumerable<NonDerogableRight>> GetNonDerogableRights();
     }
 }

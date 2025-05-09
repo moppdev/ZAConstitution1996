@@ -7,6 +7,6 @@ namespace Constitution1996API.DataHandling
     {
 
         // methods
-        public IEnumerable<Amendment> GetAmendments();
+        public Task<IEnumerable<Amendment>> GetAmendments();
     }
 }

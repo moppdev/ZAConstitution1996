@@ -18,9 +18,9 @@ namespace  Constitution1996API.DataHandling
         }
 
         // Gets all Amendments of the Constitution to date and returns an Enumerable containing the data
-        public IEnumerable<Amendment> GetAmendments()
+        public async Task<IEnumerable<Amendment>> GetAmendments()
         {
-            return _entityFramework.Amendments.FromSqlRaw($"[AmendmentSchema].spGetAmendments");
+            return await _entityFramework.Amendments.FromSqlRaw($"[AmendmentSchema].spGetAmendments").ToListAsync();
         }
     }
 }
