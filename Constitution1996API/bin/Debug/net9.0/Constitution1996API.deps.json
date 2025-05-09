@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v9.0": {
       "Constitution1996API/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "9.0.3",
           "Microsoft.Data.SqlClient": "6.0.2",
           "Microsoft.EntityFrameworkCore": "9.0.4",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.4",
@@ -51,17 +50,6 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.11.4.0",
             "fileVersion": "1.1100.424.31005"
-          }
-        }
-      },
-      "Microsoft.AspNetCore.OpenApi/9.0.3": {
-        "dependencies": {
-          "Microsoft.OpenApi": "1.6.23"
-        },
-        "runtime": {
-          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "assemblyVersion": "9.0.3.0",
-            "fileVersion": "9.0.325.11220"
           }
         }
       },
@@ -606,13 +594,6 @@
       "sha512": "sha512-Sf4BoE6Q3jTgFkgBkx7qztYOFELBCo+wQgpYDwal/qJ1unBH73ywPztIJKXBXORRzAeNijsuxhk94h0TIMvfYg==",
       "path": "azure.identity/1.11.4",
       "hashPath": "azure.identity.1.11.4.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.OpenApi/9.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-fKh0UyGMUE+lhbovMhh3g88b9bT+y2jfZIuJ8ljY7rcCaSJ9m2Qqqbh66oULFfzWE2BUAmimzTGcPcq3jXi/Ew==",
-      "path": "microsoft.aspnetcore.openapi/9.0.3",
-      "hashPath": "microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

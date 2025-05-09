@@ -23,6 +23,9 @@ namespace Constitution1996API.DataHandling
         // DBSets used to query models
         public virtual DbSet<Amendment> Amendments {get; set;}
         public virtual DbSet<Preamble> Preamble {get; set;}
+        public virtual DbSet<Chapter> Chapters {get; set;}
+        public virtual DbSet<Section> Sections {get; set;}
+        public virtual DbSet<NonDerogableRight> NonDerogableRights {get; set;}
 
         // When the connection is configuring itself
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -41,6 +44,9 @@ namespace Constitution1996API.DataHandling
         {
             modelBuilder.Entity<Amendment>().HasNoKey().ToView(null);
             modelBuilder.Entity<Preamble>().HasNoKey().ToView(null);
+            modelBuilder.Entity<Chapter>().HasKey("ChapterID");
+            modelBuilder.Entity<Section>().HasKey("SectionID");
+            modelBuilder.Entity<NonDerogableRight>().HasKey("SectionNumber");
         }
     }
 }

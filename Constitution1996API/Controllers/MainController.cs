@@ -26,7 +26,28 @@ namespace Constitution1996API.Controllers
         [HttpGet("preamble")]
         public Preamble GetPreamble()
         {
-            return _mainRepository.RetrievePreamble();
+            return _mainRepository.GetPreamble();
+        }
+
+        // GET request that returns the Preamble to the Constitution
+        [HttpGet("chapters/all")]
+        public IEnumerable<Chapter> GetChapters()
+        {
+            return _mainRepository.GetChapters();
+        }
+
+         // GET request that returns all sections' titles, ids and chapter ids
+        [HttpGet("sections/all")]
+        public IEnumerable<Section> GetSections()
+        {
+            return _mainRepository.GetSections();
+        }
+
+         // GET request that returns the Non Derogable Rights table from the Bill of Rights (Chapter 2)
+        [HttpGet("ndr/all")]
+        public IEnumerable<NonDerogableRight> GetNonDerogableRights()
+        {
+            return _mainRepository.GetNonDerogableRights();
         }
     }
 }

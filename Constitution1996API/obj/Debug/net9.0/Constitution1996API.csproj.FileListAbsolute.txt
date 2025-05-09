@@ -6,7 +6,6 @@ C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\ne
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Constitution1996API.runtimeconfig.json
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Constitution1996API.dll
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Constitution1996API.pdb
-C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Microsoft.OpenApi.dll
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll

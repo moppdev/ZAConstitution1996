@@ -32,7 +32,7 @@ GO
 CREATE OR ALTER PROCEDURE MainSchema.spGetSections
 AS
 BEGIN
-	SELECT * FROM MainSchema.Sections ORDER BY SectionID ASC; /* Get section titles and ids */
+	SELECT SectionID, ChapterID, SectionTitle FROM MainSchema.Sections ORDER BY SectionID ASC; /* Get section titles and ids */
 END
 GO
 

@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Vamln3Tb+sU=",
+  "dgSpecHash": "8FjuEZdEQF4=",
   "success": true,
   "projectFilePath": "C:\\Users\\Marco Oppel\\Desktop\\ZAConstitution1996\\Constitution1996API\\Constitution1996API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marco Oppel\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Marco Oppel\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
-    "C:\\Users\\Marco Oppel\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
     "C:\\Users\\Marco Oppel\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Marco Oppel\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.4\\microsoft.bcl.cryptography.9.0.4.nupkg.sha512",
     "C:\\Users\\Marco Oppel\\.nuget\\packages\\microsoft.data.sqlclient\\6.0.2\\microsoft.data.sqlclient.6.0.2.nupkg.sha512",
