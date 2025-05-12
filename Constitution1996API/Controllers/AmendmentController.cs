@@ -30,7 +30,7 @@ namespace Constitution1996API.Controllers
 
             if (amendments == null || !amendments.Any())
             {
-                return NotFound();
+                return NotFound("Error: Amendments could not be found.");
             }
 
             return amendments.ToList();

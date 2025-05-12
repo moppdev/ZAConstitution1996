@@ -10,5 +10,8 @@ namespace Constitution1996API.DataHandling
         public Task<IEnumerable<Chapter>> GetChapters();
         public Task<IEnumerable<Section>> GetSections();
         public Task<IEnumerable<NonDerogableRight>> GetNonDerogableRights();
+        public Task<IEnumerable<SectionByChapter>> GetSectionsByChapterID(int chapterID);
+        public Task<IEnumerable<Subsection>> GetSubSectionsBySectionID(int sectionID);
+        public Task<IEnumerable<Clause>> GetClausesOfSubsection(int sectionID, string subsectionID);
     }
 }

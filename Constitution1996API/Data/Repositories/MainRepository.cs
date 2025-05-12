@@ -1,4 +1,6 @@
 using Constitution1996API.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Constitution1996API.DataHandling
@@ -32,7 +34,7 @@ namespace Constitution1996API.DataHandling
         public async Task<IEnumerable<Chapter>> GetChapters()
         {
             return await _entityFramework.Chapters
-                .FromSqlRaw("[MainSchema].spGetChapters")
+                .FromSql($"[MainSchema].spGetChapters")
                 .ToListAsync();
         }
 
@@ -40,7 +42,7 @@ namespace Constitution1996API.DataHandling
         public async Task<IEnumerable<Section>> GetSections()
         {
             return await _entityFramework.Sections
-                .FromSqlRaw("[MainSchema].spGetSections")
+                .FromSql($"[MainSchema].spGetSections")
                 .ToListAsync();
         }
 
@@ -48,8 +50,30 @@ namespace Constitution1996API.DataHandling
         public async Task<IEnumerable<NonDerogableRight>> GetNonDerogableRights()
         {
             return await _entityFramework.NonDerogableRights
-                .FromSqlRaw("[MainSchema].spGetNonDerogableRights")
+                .FromSql($"[MainSchema].spGetNonDerogableRights")
                 .ToListAsync();
+        }
+
+        // Gets the the sections of a specific chapter
+        public async Task<IEnumerable<SectionByChapter>> GetSectionsByChapterID(int chapterID)
+        {
+            SqlParameter param = new SqlParameter("@SectionID", chapterID);
+            return await _entityFramework.SectionsByChapters.FromSqlRaw($"[MainSchema].spGetSectionsByChapterID @SectionID", param).ToListAsync();
+        } 
+
+        // gets the subsections of a section
+        public async Task<IEnumerable<Subsection>> GetSubSectionsBySectionID(int sectionID)
+        {
+            SqlParameter param = new SqlParameter("@SectionID", sectionID);
+            return await _entityFramework.SubsectionBySection.FromSqlRaw($"[MainSchema].spGetSubSectionsBySectionID @SectionID", param).ToListAsync();
+        }
+
+        // gets the clauses of a subsection of a section
+        public async Task<IEnumerable<Clause>> GetClausesOfSubsection(int sectionID, string subsectionID)
+        {
+            SqlParameter param = new SqlParameter("@SubsectionID", subsectionID);
+            SqlParameter paramTwo = new SqlParameter("@SectionID", sectionID);
+            return await _entityFramework.ClausesBySubsection.FromSqlRaw($"[MainSchema].spGetClausesOfSubsection @SubsectionID, @SectionID", param, paramTwo).ToListAsync();
         }
     }
 }

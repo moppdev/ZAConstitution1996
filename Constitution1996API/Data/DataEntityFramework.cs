@@ -26,6 +26,9 @@ namespace Constitution1996API.DataHandling
         public virtual DbSet<Chapter> Chapters {get; set;}
         public virtual DbSet<Section> Sections {get; set;}
         public virtual DbSet<NonDerogableRight> NonDerogableRights {get; set;}
+        public virtual DbSet<SectionByChapter> SectionsByChapters {get; set;}
+        public virtual DbSet<Subsection> SubsectionBySection {get; set;}
+        public virtual DbSet<Clause> ClausesBySubsection {get; set;}
 
         // When the connection is configuring itself
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,6 +50,9 @@ namespace Constitution1996API.DataHandling
             modelBuilder.Entity<Chapter>().HasKey("ChapterID");
             modelBuilder.Entity<Section>().HasKey("SectionID");
             modelBuilder.Entity<NonDerogableRight>().HasKey("SectionNumber");
+            modelBuilder.Entity<SectionByChapter>().HasKey("SectionID");
+            modelBuilder.Entity<Subsection>().HasKey("SubsectionID");
+            //modelBuilder.Entity<Clause>().HasKey("SubsectionID");
         }
     }
 }
