@@ -1,7 +1,6 @@
 using Constitution1996API.DataHandling;
 using Constitution1996API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Constitution1996API.Controllers
@@ -24,6 +23,11 @@ namespace Constitution1996API.Controllers
             _mainRepository = mainRepository;
         }
 
+        // HttpClient used to call the GetFullSection method in GetFullChapter
+        private static readonly HttpClient _httpClient = new ()
+        {
+            BaseAddress = new Uri("http://localhost:5056")
+        };
 
         // GET request that returns the Preamble to the Constitution
         [HttpGet("preamble")]
@@ -64,26 +68,6 @@ namespace Constitution1996API.Controllers
         }
 
 
-
-         // GET request that returns all sections' titles, ids and text if not null
-        [HttpGet("sections/all")]
-        public async Task<ActionResult<IEnumerable<Section>>> GetSections()
-        {
-            // async load the method
-            IEnumerable<Section> sections = await _mainRepository.GetSections();
-
-            // check if result is null or empty
-            if (sections == null || !sections.Any())
-            {
-                return NotFound("Error: no sections could be found.");
-            }
-
-            // Else, return result
-            return sections.ToList();
-        }
-
-
-
          // GET request that returns the sections of a specific chapter
         [HttpGet("chapter/{chapterID}/sections")]
         public async Task<ActionResult<IEnumerable<SectionByChapter>>> GetSectionsByChapter(int chapterID)
@@ -105,6 +89,90 @@ namespace Constitution1996API.Controllers
             }
 
             return NotFound("Error: Invalid chapter ID used. Check that the chapter number is valid (1-14).");
+        }
+
+
+        // GET request that fully returns all sections in a chapter with all content
+        [HttpGet("chapter/{chapterID}/sections/full")]
+        public async Task<ActionResult<FullChapter>> GetFullChapters(int chapterID)
+        {
+            // Check for a correct ID
+           if (chapterID >= 1 && chapterID <= 14)
+           {
+                // Get the chapter's title
+                IEnumerable<Chapter> chapters = await _mainRepository.GetChapters();
+                var chapterTitle = chapters.First(chapter => chapter.ChapterID == chapterID).ChapterTitle;
+
+                // Get all section IDs for the chapter
+                IEnumerable<SectionByChapter> sectionsByChapter = await _mainRepository.GetSectionsByChapterID(chapterID);
+
+                // if sections aren't found, return 404
+                if (sectionsByChapter.IsNullOrEmpty())
+                {
+                    return NotFound($"Error: sections for chapter {chapterID} could not be found");
+                }
+
+                // create and fill list of sections that contain all their content
+                List<FullSection> fullSections = [];
+
+                // for every section ID in sectionsByChapter
+                foreach (var section in sectionsByChapter)
+                {
+                    try
+                    {
+                        // Call API endpoint that gets full sections
+                        var response = await _httpClient.GetAsync($"/api/v1/main/section/{section.SectionID}/full");
+
+                        // If call is successful
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Get the JSON content of the call's response
+                            var fullSection = await response.Content.ReadFromJsonAsync<FullSection>();
+
+                            // If the content is not null, add the section to the List
+                            if (fullSection != null)
+                            {
+                                fullSections.Add(fullSection);
+                            }
+                        }
+                    }
+                    catch (HttpRequestException ex)
+                    {
+                        // return 500 if something else goes wrong
+                        return StatusCode(StatusCodes.Status500InternalServerError, $"Something went wrong while retrieving section content for chapter {chapterID}: {ex}");
+                    }
+                }
+
+                // if full sections aren't created, return 404
+                if (fullSections.IsNullOrEmpty())
+                {
+                    return NotFound($"Error: full sections for chapter {chapterID} could not be found.");
+                }
+
+                // return the entire chapter's contents
+                return new FullChapter(chapterID, chapterTitle, fullSections);
+           }
+
+            return NotFound("Error: Invalid chapter ID used. Check that the chapter number is valid (1-14).");
+        }
+
+
+
+        // GET request that returns all sections' titles, ids and text if not null
+        [HttpGet("sections/all")]
+        public async Task<ActionResult<IEnumerable<Section>>> GetSections()
+        {
+            // async load the method
+            IEnumerable<Section> sections = await _mainRepository.GetSections();
+
+            // check if result is null or empty
+            if (sections == null || !sections.Any())
+            {
+                return NotFound("Error: no sections could be found.");
+            }
+
+            // Else, return result
+            return sections.ToList();
         }
 
 
@@ -179,52 +247,6 @@ namespace Constitution1996API.Controllers
                 return new Section();
         }
 
-
-
-        // GET request that fully returns all sections in a chapter with all content
-        [HttpGet("/api/v1/main/chapter/{chapterID}/sections/full")]
-        public async Task<ActionResult<FullChapter>> GetFullChapters(int chapterID)
-        {
-            // Check for a correct ID
-           if (chapterID >= 0 && chapterID <= 14)
-           {
-                // Get the chapter's title
-                IEnumerable<Chapter> chapters = await _mainRepository.GetChapters();
-                var chapterTitle = chapters.First(chapter => chapter.ChapterID == chapterID).ChapterTitle;
-
-                // Get all section IDs for the chapter
-                IEnumerable<SectionByChapter> sectionsByChapter = await _mainRepository.GetSectionsByChapterID(chapterID);
-
-                // if sections aren't found, return 404
-                if (sectionsByChapter.IsNullOrEmpty())
-                {
-                    return NotFound($"Error: sections for chapter {chapterID} could not be found");
-                }
-
-                // create and fill list of sections that contain all their content
-                List<FullSection> fullSections = [];
-
-                // for every section ID in sectionsByChapter
-                foreach (var section in sectionsByChapter)
-                {
-                    //var fullSection = await HttpGetAttribute("");
-                    // if (fullSection != null)
-                    // {
-                    //     fullSections.Add(fullSection);
-                    // }
-                }
-
-                // if full sections aren't created, return 404
-                if (fullSections.IsNullOrEmpty())
-                {
-                    return NotFound($"Error: full sections for chapter {chapterID} could not be found.");
-                }
-
-                return new FullChapter(chapterID, chapterTitle, fullSections);
-           }
-
-            return NotFound("Error: Invalid chapter ID used. Check that the chapter number is valid (1-14).");
-        }
 
          // GET request that returns the Non Derogable Rights table from the Bill of Rights (Chapter 2)
         [HttpGet("ndr/all")]

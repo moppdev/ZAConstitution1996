@@ -26,13 +26,16 @@ namespace Constitution1996API.Controllers
         [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<Amendment>>> GetAmendments()
         {
+            // get the amendments
             IEnumerable<Amendment> amendments = await _amendmentRepository.GetAmendments();
 
+            // if amendments are null/ermpty return 404
             if (amendments == null || !amendments.Any())
             {
                 return NotFound("Error: Amendments could not be found.");
             }
 
+            // return the amendments
             return amendments.ToList();
         }
     }

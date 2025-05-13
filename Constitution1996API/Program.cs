@@ -19,6 +19,9 @@ builder.Services.AddCors((options) =>
             });
     });
 
+// Create HttpClient
+builder.Services.AddHttpClient();
+
 // Initialize and connect the repository interfaces to their classes
 builder.Services.AddScoped<IAmendmentRepository, AmendmentRepository>();
 builder.Services.AddScoped<IMainRepository, MainRepository>();
