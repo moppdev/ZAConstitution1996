@@ -54,7 +54,7 @@ namespace Constitution1996API.DataHandling
                 .ToListAsync();
         }
 
-        // Gets the the sections of a specific chapter
+        // Gets the sections of a specific chapter
         public async Task<IEnumerable<SectionByChapter>> GetSectionsByChapterID(int chapterID)
         {
             SqlParameter param = new SqlParameter("@SectionID", chapterID);

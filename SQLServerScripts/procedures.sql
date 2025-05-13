@@ -187,12 +187,9 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE ScheduleSchema.spGetAnnexureSections
-	@AnnexureID char(1),
-	@SectionID int
 AS
 BEGIN
-	SELECT @AnnexureID AS Annexure, anc.SectionID, anc.SectionTitle, anc.SectionText FROM ScheduleSchema.AnnexureContents anc
-	WHERE anc.SectionID = @SectionID AND  anc.AnnexureID = @AnnexureID; /* Get sections of an annexure*/
+	SELECT * FROM ScheduleSchema.AnnexureContents ORDER BY SectionID ASC; /* Get section titles and ids */
 END
 GO
 
@@ -201,8 +198,7 @@ CREATE OR ALTER PROCEDURE ScheduleSchema.spGetAnnexureSubsections
 	@SectionID int
 AS
 BEGIN
-	SELECT @AnnexureID AS Annexure,
-	@SectionID AS SectionID, SubsectionID, ans.SectionText FROM ScheduleSchema.AnnexureSubsections ans
+	SELECT SubsectionID, ans.SectionText FROM ScheduleSchema.AnnexureSubsections ans
 	WHERE ans.SectionID = @SectionID AND  ans.AnnexureID = @AnnexureID; /* Get subsections per section of an annexure */
 END
 GO

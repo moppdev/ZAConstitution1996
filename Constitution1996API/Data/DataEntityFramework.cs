@@ -20,7 +20,7 @@ namespace Constitution1996API.DataHandling
             _config = config;
         }
 
-        // DBSets used to query models
+        // DBSets used to query most models
         public virtual DbSet<Amendment> Amendments {get; set;}
         public virtual DbSet<Preamble> Preamble {get; set;}
         public virtual DbSet<Chapter> Chapters {get; set;}
@@ -29,6 +29,10 @@ namespace Constitution1996API.DataHandling
         public virtual DbSet<SectionByChapter> SectionsByChapters {get; set;}
         public virtual DbSet<Subsection> SubsectionBySection {get; set;}
         public virtual DbSet<Clause> ClausesBySubsection {get; set;}
+        public virtual DbSet<Annexure> Annexures {get; set;}
+        public virtual DbSet<AnnexureSection> AnnexureSections {get; set;}
+        public virtual DbSet<AnnexureSubsection> AnnexureSubsections {get; set;}
+
 
         // When the connection is configuring itself
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -52,7 +56,8 @@ namespace Constitution1996API.DataHandling
             modelBuilder.Entity<NonDerogableRight>().HasKey("SectionNumber");
             modelBuilder.Entity<SectionByChapter>().HasKey("SectionID");
             modelBuilder.Entity<Subsection>().HasKey("SubsectionID");
-            //modelBuilder.Entity<Clause>().HasKey("SubsectionID");
+            modelBuilder.Entity<AnnexureSection>().HasKey(["AnnexureID", "SectionID"]);
+            modelBuilder.Entity<AnnexureSubsection>().HasKey(["SubsectionID"]);
         }
     }
 }
