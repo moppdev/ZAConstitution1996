@@ -34,6 +34,7 @@ namespace Constitution1996API.DataHandling
         public virtual DbSet<AnnexureSubsection> AnnexureSubsections {get; set;}
         public virtual DbSet<ScheduleOne_NationalFlag> ScheduleOne {get; set;}
         public virtual DbSet<ScheduleOneA_GeoAreasProvinces> ScheduleOneA {get; set;}
+        public virtual DbSet<Competency> ScheduleFourFive {get; set;}
 
 
         // When the connection is configuring itself
@@ -53,8 +54,6 @@ namespace Constitution1996API.DataHandling
         {
             modelBuilder.Entity<Amendment>().HasNoKey().ToView(null);
             modelBuilder.Entity<Preamble>().HasNoKey().ToView(null);
-            modelBuilder.Entity<ScheduleOneA_GeoAreasProvinces>().HasNoKey().ToView(null);
-            modelBuilder.Entity<ScheduleOne_NationalFlag>().HasKey("SectionID");
             modelBuilder.Entity<Chapter>().HasKey("ChapterID");
             modelBuilder.Entity<Section>().HasKey("SectionID");
             modelBuilder.Entity<NonDerogableRight>().HasKey("SectionNumber");
@@ -63,6 +62,9 @@ namespace Constitution1996API.DataHandling
             modelBuilder.Entity<AnnexureSection>().HasKey(["AnnexureID", "SectionID"]);
             modelBuilder.Entity<AnnexureSubsection>().HasKey(["SectionID", "SubsectionID"]);
             modelBuilder.Entity<Clause>().HasKey(["ClauseID", "SubsectionID", "SectionID"]);
+            modelBuilder.Entity<ScheduleOneA_GeoAreasProvinces>().HasNoKey().ToView(null);
+            modelBuilder.Entity<ScheduleOne_NationalFlag>().HasKey("SectionID");
+            modelBuilder.Entity<Competency>().HasKey("PartID");
         }
     }
 }

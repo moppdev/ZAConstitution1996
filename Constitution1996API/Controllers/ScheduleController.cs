@@ -25,16 +25,74 @@ namespace Constitution1996API.Controllers
 
         // GET request that returns the content of Schedule 1
         [HttpGet("one")]
-        public async Task<IEnumerable<ScheduleOne_NationalFlag>> GetScheduleOne_NationalFlag()
+        public async Task<ActionResult<IEnumerable<ScheduleOne_NationalFlag>>> GetScheduleOne_NationalFlag()
         {
-            return await _scheduleRepository.GetScheduleOne_NationalFlag();
+            // async load the method
+           IEnumerable<ScheduleOne_NationalFlag> scheduleOne = await _scheduleRepository.GetScheduleOne_NationalFlag();
+
+            // check if result is null or empty
+            if (scheduleOne.IsNullOrEmpty())
+            {
+                // return 404
+                return NotFound("Error: Contents of Schedule 1 could not be found.");
+            }
+
+             // Else, return result
+            return scheduleOne.ToList();
         }
 
         // GET request that returns the content of Schedule 1A
-        [HttpGet("onea")]
-        public async Task<IEnumerable<ScheduleOneA_GeoAreasProvinces>> GetScheduleOneA_GeoAreasProvinces()
+        [HttpGet("one/a")]
+        public async Task<ActionResult<IEnumerable<ScheduleOneA_GeoAreasProvinces>>> GetScheduleOneA_GeoAreasProvinces()
         {
-            return await _scheduleRepository.GetScheduleOneA_GeoAreasProvinces();
+            // async load the method
+           IEnumerable<ScheduleOneA_GeoAreasProvinces> scheduleOneA = await _scheduleRepository.GetScheduleOneA_GeoAreasProvinces();
+
+            // check if result is null or empty
+            if (scheduleOneA.IsNullOrEmpty())
+            {
+                // return 404
+                return NotFound("Error: Contents of Schedule 1A could not be found.");
+            }
+
+             // Else, return result
+            return scheduleOneA.ToList();
+        }
+
+        // GET request that returns the content of Schedule 4
+        [HttpGet("four")]
+        public async Task<ActionResult<IEnumerable<Competency>>> GetScheduleFive_ExclusiveProvincialCompetencies()
+        {
+            // async load the method
+           IEnumerable<Competency> scheduleFour = await _scheduleRepository.GetScheduleFour();
+
+            // check if result is null or empty
+            if (scheduleFour.IsNullOrEmpty())
+            {
+                // return 404
+                return NotFound("Error: Contents of Schedule 1 could not be found.");
+            }
+
+             // Else, return result
+            return scheduleFour.ToList();
+        }
+
+        // GET request that returns the content of Schedule 5
+        [HttpGet("five")]
+        public async Task<ActionResult<IEnumerable<Competency>>> GetScheduleFour_ConcurrentCompetencies()
+        {
+            // async load the method
+           IEnumerable<Competency> scheduleFive = await _scheduleRepository.GetScheduleFour();
+
+            // check if result is null or empty
+            if (scheduleFive.IsNullOrEmpty())
+            {
+                // return 404
+                return NotFound("Error: Contents of Schedule 5 could not be found.");
+            }
+
+             // Else, return result
+            return scheduleFive.ToList();
         }
     }
 }

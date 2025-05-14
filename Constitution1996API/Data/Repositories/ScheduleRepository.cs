@@ -31,6 +31,18 @@ namespace Constitution1996API.DataHandling
             return await _entityFramework.ScheduleOneA.FromSqlRaw($"[ScheduleSchema].spGetScheduleOneA_GeoAreasProvinces").ToListAsync();
         }
 
+        // gets the contents of Schedule 4, which describes competencies that both provincial and national governments share
+        public async Task<IEnumerable<Competency>> GetScheduleFour()
+        {
+            return await _entityFramework.ScheduleFourFive.FromSqlRaw($"[ScheduleSchema].spGetScheduleFour_ConcurrentCompetencies").ToListAsync();
+        }
+
+        // gets the contents of Schedule 5, which describes competencies that both provincial and national governments share
+        public async Task<IEnumerable<Competency>> GetScheduleFive()
+        {
+            return await _entityFramework.ScheduleFourFive.FromSqlRaw($"[ScheduleSchema].spGetScheduleFive_ExclusiveProvincialCompetencies").ToListAsync();
+        }
+
         /// ANNEXURES //
         // gets the annexures' ids and titles
         public async Task<IEnumerable<Annexure>> GetAnnexures()

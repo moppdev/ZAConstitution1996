@@ -8,6 +8,8 @@ namespace Constitution1996API.DataHandling
         // methods for Schedules
         public Task<IEnumerable<ScheduleOne_NationalFlag>> GetScheduleOne_NationalFlag();
         public Task<IEnumerable<ScheduleOneA_GeoAreasProvinces>> GetScheduleOneA_GeoAreasProvinces();
+        public Task<IEnumerable<Competency>> GetScheduleFour();
+        public Task<IEnumerable<Competency>> GetScheduleFive();
 
         // methods for Annexures
         public Task<IEnumerable<Annexure>> GetAnnexures();

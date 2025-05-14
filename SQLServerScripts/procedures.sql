@@ -141,6 +141,11 @@ BEGIN
 END
 GO
 
+ScheduleSchema.spGetScheduleFour_ConcurrentCompetencies;
+GO
+ScheduleSchema.spGetScheduleFive_ExclusiveProvincialCompetencies;
+Go
+
 CREATE OR ALTER PROCEDURE [ScheduleSchema].spGetScheduleSix_TransitionalArrangements
 AS
 BEGIN
