@@ -57,7 +57,8 @@ namespace Constitution1996API.DataHandling
             modelBuilder.Entity<SectionByChapter>().HasKey("SectionID");
             modelBuilder.Entity<Subsection>().HasKey("SubsectionID");
             modelBuilder.Entity<AnnexureSection>().HasKey(["AnnexureID", "SectionID"]);
-            modelBuilder.Entity<AnnexureSubsection>().HasKey(["SubsectionID"]);
+            modelBuilder.Entity<AnnexureSubsection>().HasKey(["SectionID", "SubsectionID"]);
+            modelBuilder.Entity<Clause>().HasKey(["ClauseID", "SubsectionID", "SectionID"]);
         }
     }
 }

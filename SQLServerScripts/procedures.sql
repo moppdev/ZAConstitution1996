@@ -194,15 +194,13 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE ScheduleSchema.spGetAnnexureSubsections
-	@AnnexureID char(1),
-	@SectionID int
+	@AnnexureID char(1)
 AS
 BEGIN
-	SELECT SubsectionID, ans.SectionText FROM ScheduleSchema.AnnexureSubsections ans
-	WHERE ans.SectionID = @SectionID AND  ans.AnnexureID = @AnnexureID; /* Get subsections per section of an annexure */
+	SELECT SectionID, SubsectionID, ans.SectionText FROM ScheduleSchema.AnnexureSubsections ans
+	WHERE ans.AnnexureID = @AnnexureID; /* Get subsections per section of an annexure */
 END
 GO
-
 
 /* END OF SCHEDULESCHEMA STORED PROCEDURES */
 

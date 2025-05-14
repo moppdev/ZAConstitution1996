@@ -10,6 +10,6 @@ namespace Constitution1996API.DataHandling
         // methods for Annexures
         public Task<IEnumerable<Annexure>> GetAnnexures();
         public Task<IEnumerable<AnnexureSection>> GetAnnexureSections();
-        public Task<IEnumerable<AnnexureSubsection>> GetAnnexureSubsections(char annexureID, int sectionID);
+        public Task<IEnumerable<AnnexureSubsection>> GetAnnexureSubsections(char annexureID);
     }
 }

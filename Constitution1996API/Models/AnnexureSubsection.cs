@@ -4,6 +4,7 @@ namespace Constitution1996API.Models
     public partial class AnnexureSubsection
     {
         // fields
+        public int SectionID {get; set;}
         public string SubsectionID {get; set;} = "N/A";
         public string SectionText {get; set;} = "N/A";
     }

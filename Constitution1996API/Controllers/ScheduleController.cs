@@ -67,6 +67,7 @@ namespace Constitution1996API.Controllers
                 return NotFound("Error: Annexure not found");
             }
 
+            // Get all sections and use LINQ to find the annexure's sections
             IEnumerable<AnnexureSection> annexureSections = await _scheduleRepository.GetAnnexureSections();
             var sections = annexureSections.Where(sec => sec.AnnexureID == annexureID);
 
@@ -76,15 +77,7 @@ namespace Constitution1996API.Controllers
                 return NotFound($"Error: Sections for Annexure {annexureID} not found");
             }
 
-            List<IEnumerable<AnnexureSubsection>> annexureSubsections = [];
-            foreach (var section in sections)
-            {
-                var subs = await _scheduleRepository.GetAnnexureSubsections(annexureID, section.SectionID);
-                if (!subs.IsNullOrEmpty())
-                {
-                    annexureSubsections.Add(subs);
-                }
-            } // TODO: FIX SUBSECTIONS - add sectionID too
+            IEnumerable<AnnexureSubsection> annexureSubsections = await _scheduleRepository.GetAnnexureSubsections(annexureID);
 
             if (annexureSubsections.IsNullOrEmpty())
             {

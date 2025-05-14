@@ -35,11 +35,10 @@ namespace Constitution1996API.DataHandling
         }
 
         // gets subsections of an annexure section
-        public async Task<IEnumerable<AnnexureSubsection>> GetAnnexureSubsections(char annexureID, int sectionID)
+        public async Task<IEnumerable<AnnexureSubsection>> GetAnnexureSubsections(char annexureID)
         {
             SqlParameter param = new SqlParameter("@AnnexureID", annexureID);
-            SqlParameter paramTwo = new SqlParameter("@SectionID", sectionID);
-            return await _entityFramework.AnnexureSubsections.FromSqlRaw($"[ScheduleSchema].spGetAnnexureSubsections @AnnexureID, @SectionID", param, paramTwo).ToListAsync();
+            return await _entityFramework.AnnexureSubsections.FromSqlRaw($"[ScheduleSchema].spGetAnnexureSubsections @AnnexureID", param).ToListAsync();
         }
     }   
 }

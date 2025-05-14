@@ -208,7 +208,7 @@ namespace Constitution1996API.Controllers
                         // for every subsection, check if it contains clauses
                         foreach (var subsection in subsections)
                         {
-                            var clauses = await _mainRepository.GetClausesOfSubsection(sectionID, subsection.SubsectionID);
+                            var clauses = _mainRepository.GetClausesOfSubsection(sectionID, subsection.SubsectionID).Result;
                             if (!clauses.IsNullOrEmpty())
                             {
                                 clausesList.Add(clauses);

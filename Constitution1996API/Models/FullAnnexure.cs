@@ -13,10 +13,10 @@ namespace Constitution1996API.Models
 
         public IEnumerable<AnnexureSection>? AnnexureSections {get; set;} = null;
 
-        public List<IEnumerable<AnnexureSubsection>>? AnnexureSubsections {get; set;} = null;
+        public IEnumerable<AnnexureSubsection>? AnnexureSubsections {get; set;} = null;
 
         // constructor to set the above values
-        public FullAnnexure(char annexureID, string annexureTitle, IEnumerable<AnnexureSection>? annexureSections, List<IEnumerable<AnnexureSubsection>>? annexureSubsections)
+        public FullAnnexure(char annexureID, string annexureTitle, IEnumerable<AnnexureSection>? annexureSections, IEnumerable<AnnexureSubsection>? annexureSubsections)
         {
             this.AnnexureSubsections = annexureSubsections;
             this.AnnexureID = annexureID;
