@@ -141,11 +141,6 @@ BEGIN
 END
 GO
 
-ScheduleSchema.spGetScheduleFour_ConcurrentCompetencies;
-GO
-ScheduleSchema.spGetScheduleFive_ExclusiveProvincialCompetencies;
-Go
-
 CREATE OR ALTER PROCEDURE [ScheduleSchema].spGetScheduleSix_TransitionalArrangements
 AS
 BEGIN
@@ -179,7 +174,8 @@ BEGIN
 	SELECT * FROM ScheduleSchema.ScheduleSeven_RepealedLaws; /* Get Schedule 7's contents */
 END
 GO
-
+ScheduleSchema.spGetScheduleSeven_RepealedLaws;
+GO
 
 
 /* Annexures */

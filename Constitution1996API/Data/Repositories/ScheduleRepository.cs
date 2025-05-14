@@ -26,7 +26,7 @@ namespace Constitution1996API.DataHandling
         }        
         
         // gets the contents of Schedule 1A, which describes the borders and demarcations of provinces
-        public async Task<IEnumerable<ScheduleOneA_GeoAreasProvinces>> GetScheduleOneA_GeoAreasProvinces()
+        public async Task<IEnumerable<ScheduleOneA_GeoAreasProvince>> GetScheduleOneA_GeoAreasProvinces()
         {
             return await _entityFramework.ScheduleOneA.FromSqlRaw($"[ScheduleSchema].spGetScheduleOneA_GeoAreasProvinces").ToListAsync();
         }
@@ -37,10 +37,16 @@ namespace Constitution1996API.DataHandling
             return await _entityFramework.ScheduleFourFive.FromSqlRaw($"[ScheduleSchema].spGetScheduleFour_ConcurrentCompetencies").ToListAsync();
         }
 
-        // gets the contents of Schedule 5, which describes competencies that both provincial and national governments share
+        // gets the contents of Schedule 5, which describes competencies that are exclusively under provincial control
         public async Task<IEnumerable<Competency>> GetScheduleFive()
         {
             return await _entityFramework.ScheduleFourFive.FromSqlRaw($"[ScheduleSchema].spGetScheduleFive_ExclusiveProvincialCompetencies").ToListAsync();
+        }
+
+        // gets the contents of Schedule 5, which describes competencies that are exclusively under provincial control
+        public async Task<IEnumerable<ScheduleSeven_RepealedLaw>> GetScheduleSeven()
+        {
+            return await _entityFramework.ScheduleSeven.FromSqlRaw($"[ScheduleSchema].spGetScheduleSeven_RepealedLaws").ToListAsync();
         }
 
         /// ANNEXURES //

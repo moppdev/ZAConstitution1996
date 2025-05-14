@@ -8,7 +8,7 @@ namespace Constitution1996API.Models
         public string SectionText {get; set;} = "";
     }
 
-    public class ScheduleOneA_GeoAreasProvinces
+    public class ScheduleOneA_GeoAreasProvince
     {
         public string Province {get; set;} = "";
         public string MapCSV {get; set;} = "";

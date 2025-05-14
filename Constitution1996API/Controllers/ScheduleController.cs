@@ -43,10 +43,10 @@ namespace Constitution1996API.Controllers
 
         // GET request that returns the content of Schedule 1A
         [HttpGet("one/a")]
-        public async Task<ActionResult<IEnumerable<ScheduleOneA_GeoAreasProvinces>>> GetScheduleOneA_GeoAreasProvinces()
+        public async Task<ActionResult<IEnumerable<ScheduleOneA_GeoAreasProvince>>> GetScheduleOneA_GeoAreasProvinces()
         {
             // async load the method
-           IEnumerable<ScheduleOneA_GeoAreasProvinces> scheduleOneA = await _scheduleRepository.GetScheduleOneA_GeoAreasProvinces();
+           IEnumerable<ScheduleOneA_GeoAreasProvince> scheduleOneA = await _scheduleRepository.GetScheduleOneA_GeoAreasProvinces();
 
             // check if result is null or empty
             if (scheduleOneA.IsNullOrEmpty())
@@ -93,6 +93,24 @@ namespace Constitution1996API.Controllers
 
              // Else, return result
             return scheduleFive.ToList();
+        }
+
+         // GET request that returns the content of Schedule 7
+        [HttpGet("seven")]
+        public async Task<ActionResult<IEnumerable<ScheduleSeven_RepealedLaw>>> GetScheduleSeven()
+        {
+            // async load the method
+          IEnumerable<ScheduleSeven_RepealedLaw> scheduleSeven = await _scheduleRepository.GetScheduleSeven();
+
+            // check if result is null or empty
+            if (scheduleSeven.IsNullOrEmpty())
+            {
+                // return 404
+                return NotFound("Error: Contents of Schedule 5 could not be found.");
+            }
+
+             // Else, return result
+            return scheduleSeven.ToList();
         }
     }
 }
