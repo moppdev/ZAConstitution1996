@@ -19,7 +19,17 @@ namespace Constitution1996API.DataHandling
         }
 
         /// SCHEDULES ///
-
+        // gets the contents of Schedule 1, which describes the national flag's appearance
+        public async Task<IEnumerable<ScheduleOne_NationalFlag>> GetScheduleOne_NationalFlag()
+        {
+            return await _entityFramework.ScheduleOne.FromSqlRaw($"[ScheduleSchema].spGetScheduleOne_NationalFlag").ToListAsync();
+        }        
+        
+        // gets the contents of Schedule 1A, which describes the borders and demarcations of provinces
+        public async Task<IEnumerable<ScheduleOneA_GeoAreasProvinces>> GetScheduleOneA_GeoAreasProvinces()
+        {
+            return await _entityFramework.ScheduleOneA.FromSqlRaw($"[ScheduleSchema].spGetScheduleOneA_GeoAreasProvinces").ToListAsync();
+        }
 
         /// ANNEXURES //
         // gets the annexures' ids and titles

@@ -32,6 +32,8 @@ namespace Constitution1996API.DataHandling
         public virtual DbSet<Annexure> Annexures {get; set;}
         public virtual DbSet<AnnexureSection> AnnexureSections {get; set;}
         public virtual DbSet<AnnexureSubsection> AnnexureSubsections {get; set;}
+        public virtual DbSet<ScheduleOne_NationalFlag> ScheduleOne {get; set;}
+        public virtual DbSet<ScheduleOneA_GeoAreasProvinces> ScheduleOneA {get; set;}
 
 
         // When the connection is configuring itself
@@ -51,6 +53,8 @@ namespace Constitution1996API.DataHandling
         {
             modelBuilder.Entity<Amendment>().HasNoKey().ToView(null);
             modelBuilder.Entity<Preamble>().HasNoKey().ToView(null);
+            modelBuilder.Entity<ScheduleOneA_GeoAreasProvinces>().HasNoKey().ToView(null);
+            modelBuilder.Entity<ScheduleOne_NationalFlag>().HasKey("SectionID");
             modelBuilder.Entity<Chapter>().HasKey("ChapterID");
             modelBuilder.Entity<Section>().HasKey("SectionID");
             modelBuilder.Entity<NonDerogableRight>().HasKey("SectionNumber");

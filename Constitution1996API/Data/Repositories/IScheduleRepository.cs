@@ -6,6 +6,8 @@ namespace Constitution1996API.DataHandling
     public interface IScheduleRepository
     {
         // methods for Schedules
+        public Task<IEnumerable<ScheduleOne_NationalFlag>> GetScheduleOne_NationalFlag();
+        public Task<IEnumerable<ScheduleOneA_GeoAreasProvinces>> GetScheduleOneA_GeoAreasProvinces();
 
         // methods for Annexures
         public Task<IEnumerable<Annexure>> GetAnnexures();
