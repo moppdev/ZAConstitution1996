@@ -204,18 +204,10 @@ namespace Constitution1996API.Controllers
                             return new FullSection(section.SectionID, section.SectionTitle, section.SectionText, null, null);
                         }
 
-                        List<IEnumerable<Clause>> clausesList = [];
-                        // for every subsection, check if it contains clauses
-                        foreach (var subsection in subsections)
-                        {
-                            var clauses = _mainRepository.GetClausesOfSubsection(sectionID, subsection.SubsectionID).Result;
-                            if (!clauses.IsNullOrEmpty())
-                            {
-                                clausesList.Add(clauses);
-                            }
-                        } // TODO: FIX CLAUSES
+                        // get all clauses in the section
+                        IEnumerable<Clause> clausesList = await _mainRepository.GetClausesOfSubsection(sectionID);
 
-                        // return the section without clauses
+                        // return the section without clauses, if not clauses are found
                         if (clausesList.IsNullOrEmpty())
                         {
                              return new FullSection(section.SectionID, section.SectionTitle, section.SectionText, subsections, null);

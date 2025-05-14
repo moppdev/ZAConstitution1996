@@ -69,11 +69,10 @@ namespace Constitution1996API.DataHandling
         }
 
         // gets the clauses of a subsection of a section
-        public async Task<IEnumerable<Clause>> GetClausesOfSubsection(int sectionID, string subsectionID)
+        public async Task<IEnumerable<Clause>> GetClausesOfSubsection(int sectionID)
         {
-            SqlParameter param = new SqlParameter("@SubsectionID", subsectionID);
-            SqlParameter paramTwo = new SqlParameter("@SectionID", sectionID);
-            return await _entityFramework.ClausesBySubsection.FromSqlRaw($"[MainSchema].spGetClausesOfSubsection @SubsectionID, @SectionID", param, paramTwo).ToListAsync();
+            SqlParameter param = new SqlParameter("@SectionID", sectionID);
+            return await _entityFramework.ClausesBySubsection.FromSqlRaw($"[MainSchema].spGetClausesOfSubsection @SectionID", param).ToListAsync();
         }
     }
 }

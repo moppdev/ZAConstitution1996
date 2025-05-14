@@ -16,10 +16,10 @@ namespace Constitution1996API.Models
 
         public IEnumerable<Subsection>? subSections {get; set;} = null;
 
-        public List<IEnumerable<Clause>>? clauses {get; set;} = null;
+        public IEnumerable<Clause>? clauses {get; set;} = null;
 
         // constructor to set the above values
-        public FullSection(int sectionID, string sectionTitle, string? sectionText, IEnumerable<Subsection>? subSections, List<IEnumerable<Clause>>? clauses)
+        public FullSection(int sectionID, string sectionTitle, string? sectionText, IEnumerable<Subsection>? subSections, IEnumerable<Clause>? clauses)
         {
             this.sectionID = sectionID;
             this.sectionTitle = sectionTitle;

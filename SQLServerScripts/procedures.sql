@@ -55,12 +55,11 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE MainSchema.spGetClausesOfSubsection
-	@SubsectionID nvarchar(5),
 	@SectionID int
 AS
 BEGIN
 	SELECT c.SectionID, c.SubsectionID, ClauseID, ClauseText FROM MainSchema.Clauses c
-	WHERE c.SectionID = @SectionID AND c.SubsectionID = @SubsectionID
+	WHERE c.SectionID = @SectionID
 	ORDER BY SubsectionID, ClauseID; /* Get clauses per subsection */
 END
 GO
