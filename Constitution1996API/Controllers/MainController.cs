@@ -44,13 +44,13 @@ namespace Constitution1996API.Controllers
             }
             
             // Else, return result
-            return preamble;
+            return Ok(preamble);
         }
 
 
 
         // GET request that returns all chapters' titles and ids
-        [HttpGet("chapters/all")]
+        [HttpGet("chapters")]
         public async Task<ActionResult<IEnumerable<Chapter>>> GetChapters()
         {
             // async load the method
@@ -64,7 +64,7 @@ namespace Constitution1996API.Controllers
             }
 
              // Else, return result
-            return chapters.ToList();
+            return Ok(chapters);
         }
 
 
@@ -85,7 +85,7 @@ namespace Constitution1996API.Controllers
                 }
 
                 // Else, return result
-                return sectionsByChapter.ToList();
+                return Ok(sectionsByChapter);
             }
 
             return NotFound("Error: Invalid chapter ID used. Check that the chapter number is valid (1-14).");
@@ -150,7 +150,7 @@ namespace Constitution1996API.Controllers
                 }
 
                 // return the entire chapter's contents
-                return new FullChapter(chapterID, chapterTitle, fullSections);
+                return Ok(new FullChapter(chapterID, chapterTitle, fullSections));
            }
 
             return NotFound("Error: Invalid chapter ID used. Check that the chapter number is valid (1-14).");
@@ -159,7 +159,7 @@ namespace Constitution1996API.Controllers
 
 
         // GET request that returns all sections' titles, ids and text if not null
-        [HttpGet("sections/all")]
+        [HttpGet("sections")]
         public async Task<ActionResult<IEnumerable<Section>>> GetSections()
         {
             // async load the method
@@ -172,7 +172,7 @@ namespace Constitution1996API.Controllers
             }
 
             // Else, return result
-            return sections.ToList();
+            return Ok(sections);
         }
 
 
@@ -201,7 +201,7 @@ namespace Constitution1996API.Controllers
                         if (subsections.IsNullOrEmpty())
                         {
                             // return if no subsections are found
-                            return new FullSection(section.SectionID, section.SectionTitle, section.SectionText, null, null);
+                            return Ok(new FullSection(section.SectionID, section.SectionTitle, section.SectionText, null, null));
                         }
 
                         // get all clauses in the section
@@ -210,15 +210,15 @@ namespace Constitution1996API.Controllers
                         // return the section without clauses, if not clauses are found
                         if (clausesList.IsNullOrEmpty())
                         {
-                             return new FullSection(section.SectionID, section.SectionTitle, section.SectionText, subsections, null);
+                             return Ok(new FullSection(section.SectionID, section.SectionTitle, section.SectionText, subsections, null));
                         }
 
                         // return the full section with subsections and clauses
-                        return new FullSection(section.SectionID, section.SectionTitle, section.SectionText, subsections, clausesList);
+                        return Ok(new FullSection(section.SectionID, section.SectionTitle, section.SectionText, subsections, clausesList));
                     }
 
                     // return FullSection with no subsections or clauses
-                    return new FullSection(section.SectionID, section.SectionTitle, section.SectionText, null, null);
+                    return Ok(new FullSection(section.SectionID, section.SectionTitle, section.SectionText, null, null));
                 }
 
                 // if the sectionID isn't valid return a 404
@@ -245,7 +245,7 @@ namespace Constitution1996API.Controllers
 
 
          // GET request that returns the Non Derogable Rights table from the Bill of Rights (Chapter 2)
-        [HttpGet("ndr/all")]
+        [HttpGet("ndr")]
         public async Task<ActionResult<IEnumerable<NonDerogableRight>>> GetNonDerogableRights()
         {
             // async load the method
@@ -258,7 +258,7 @@ namespace Constitution1996API.Controllers
             }
 
             // Else, return result
-            return nonDerogableRights.ToList();
+            return Ok(nonDerogableRights);
         }
     }
 }

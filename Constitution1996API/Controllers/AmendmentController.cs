@@ -1,6 +1,7 @@
 using Constitution1996API.DataHandling;
 using Constitution1996API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Constitution1996API.Controllers
 {
@@ -23,20 +24,20 @@ namespace Constitution1996API.Controllers
         }
 
         // GET request that returns all amendments to the Constitution to date
-        [HttpGet("all")]
+        [HttpGet("")]
         public async Task<ActionResult<IEnumerable<Amendment>>> GetAmendments()
         {
             // get the amendments
             IEnumerable<Amendment> amendments = await _amendmentRepository.GetAmendments();
 
             // if amendments are null/ermpty return 404
-            if (amendments == null || !amendments.Any())
+            if (amendments.IsNullOrEmpty())
             {
                 return NotFound("Error: Amendments could not be found.");
             }
 
             // return the amendments
-            return amendments.ToList();
+            return Ok(amendments);
         }
     }
 }

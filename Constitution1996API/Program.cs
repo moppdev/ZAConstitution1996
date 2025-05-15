@@ -19,6 +19,8 @@ builder.Services.AddCors((options) =>
             });
     });
 
+// TODO: Logger
+
 
 // Initialize and connect the repository interfaces to their classes
 builder.Services.AddScoped<IAmendmentRepository, AmendmentRepository>();

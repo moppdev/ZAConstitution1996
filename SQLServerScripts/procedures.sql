@@ -102,7 +102,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleTwo_Subsection
+CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleTwo_Subsections
 	@SectionID int
 AS
 BEGIN
@@ -110,19 +110,24 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleThree
+CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleThree_Parts
+AS
+BEGIN
+	SELECT * FROM ScheduleSchema.ScheduleThree_Parts; /* Get Schedule 3's main contents */
+END
+GO
+
+CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleThree_ElectionProcedures
 AS
 BEGIN
 	SELECT * FROM ScheduleSchema.ScheduleThree_ElectionProcedures; /* Get Schedule 3's main contents */
 END
 GO
 
-CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleThree_Subsection
-	@SectionID int,
-	@SectionThreePart char(1)
+CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleThree_Subsections
 AS
 BEGIN
-	SELECT SectionID, SubsectionID, SectionText FROM ScheduleSchema.ScheduleThree_Subsections WHERE @SectionID = SectionID AND @SectionThreePart = SectionThreePart; /* Get the subsections of a section in Schedule 3 */
+	SELECT SectionThreePart, SectionID, SubsectionID, SectionText FROM ScheduleSchema.ScheduleThree_Subsections; /* Get the subsections of a section in Schedule 3 */
 END
 GO
 
@@ -141,30 +146,25 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE [ScheduleSchema].spGetScheduleSix_TransitionalArrangements
+CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleSix_TransitionalArrangements
 AS
 BEGIN
 	SELECT * FROM [ScheduleSchema].ScheduleSix_TransitionalArrangements ORDER BY SectionID ASC; /* Get section titles and ids of Schedule 6 */
 END
 GO
 
-
-CREATE OR ALTER PROCEDURE [ScheduleSchema].spGetScheduleSix_Subsections
-	@SectionID int
+CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleSix_Subsections
 AS
 BEGIN
-	SELECT SubsectionID, SubsectionText FROM ScheduleSchema.ScheduleSix_Subsections sub
-	WHERE sub.SectionID = @SectionID; /* Get subsections per section in Schedule 6 */
+	SELECT SectionID, SubsectionID, SubsectionText FROM ScheduleSchema.ScheduleSix_Subsections; /* Get subsections per section in Schedule 6 */
 END
 GO
 
+
 CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleSix_Clauses
-	@SubsectionID nvarchar(5),
-	@SectionID int
 AS
 BEGIN
-	SELECT ClauseID, ClauseText FROM ScheduleSchema.ScheduleSix_Clauses scc
-	WHERE scc.SectionID = @SectionID AND scc.SubsectionID = @SubsectionID; /* Get subsections per section in Schedule 6 */
+	SELECT SectionID, SubsectionID, ClauseID, ClauseText FROM ScheduleSchema.ScheduleSix_Clauses; /* Get subsections per section in Schedule 6 */
 END
 GO
 
@@ -173,8 +173,6 @@ AS
 BEGIN
 	SELECT * FROM ScheduleSchema.ScheduleSeven_RepealedLaws; /* Get Schedule 7's contents */
 END
-GO
-ScheduleSchema.spGetScheduleSeven_RepealedLaws;
 GO
 
 

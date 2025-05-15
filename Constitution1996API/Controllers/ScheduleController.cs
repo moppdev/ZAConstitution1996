@@ -38,7 +38,7 @@ namespace Constitution1996API.Controllers
             }
 
              // Else, return result
-            return scheduleOne.ToList();
+            return Ok(scheduleOne);
         }
 
         // GET request that returns the content of Schedule 1A
@@ -56,8 +56,74 @@ namespace Constitution1996API.Controllers
             }
 
              // Else, return result
-            return scheduleOneA.ToList();
+            return Ok(scheduleOneA);
         }
+
+        // GET request that returns the content of Schedule 2
+        [HttpGet("two")]
+        public async Task<ActionResult<IEnumerable<ScheduleTwo_Full>>> GetScheduleTwo_OathsAffirmations()
+        {
+            // get the contents of schedule two
+            IEnumerable<ScheduleTwo_OathsAffirmation> scheduleTwo = await _scheduleRepository.GetScheduleTwo_OathsAffirmations();
+
+            // if null/empty, return 404
+            if (scheduleTwo.IsNullOrEmpty())
+            {
+                return NotFound("Error: Contents of Schedule 2 could not be found.");
+            }
+
+            // Get all subsections via looping through section by section
+            List<IEnumerable<ScheduleTwo_Subsection>> scheduleTwo_Subsections = [];
+            foreach (var section in scheduleTwo)
+            {
+                var sub = await _scheduleRepository.GetScheduleTwo_Subsections(section.SectionID);
+                if (!sub.IsNullOrEmpty())
+                {
+                    scheduleTwo_Subsections.Add(sub);
+                }
+            }
+
+            // if subsections are null/empty, return object without subsections
+            if (scheduleTwo_Subsections.IsNullOrEmpty())
+            {
+                return Ok(new ScheduleTwo_Full(scheduleTwo, null));
+            }
+
+            // return Schedule 2's contents
+            return Ok(new ScheduleTwo_Full(scheduleTwo, scheduleTwo_Subsections));
+        }
+
+
+        //GET request that returns the content of Schedule 3
+        [HttpGet("three")]
+        public async Task<ActionResult<IEnumerable<ScheduleThree_Full>>> GetScheduleThree_ElectionProcedures()
+        {
+            // get the parts that the schedule is divided into
+            IEnumerable<ScheduleThree_Part> parts = await _scheduleRepository.GetScheduleThree_Parts();
+
+            // Get the contents
+            IEnumerable<ScheduleThree_ElectionProcedure> electionProcedures = await _scheduleRepository.GetScheduleThree_ElectionProcedures();
+
+            // If null/empty, return 404
+            if (parts.IsNullOrEmpty() || electionProcedures.IsNullOrEmpty())
+            {
+                return NotFound("Error: Contents of Schedule 3 could not be found.");
+            }
+
+            // Get subsections
+            IEnumerable<ScheduleThree_Subsection> scheduleThree_Subsections = await _scheduleRepository.GetScheduleThree_Subsections();
+
+            // If subsections null/empty, return the schedule without subsections
+            if (scheduleThree_Subsections.IsNullOrEmpty())
+            {
+                return Ok(new ScheduleThree_Full(parts, electionProcedures, null));
+            }
+
+            // return Schedule 3's contents
+            return Ok(new ScheduleThree_Full(parts, electionProcedures, scheduleThree_Subsections));
+        }
+
+
 
         // GET request that returns the content of Schedule 4
         [HttpGet("four")]
@@ -70,11 +136,11 @@ namespace Constitution1996API.Controllers
             if (scheduleFour.IsNullOrEmpty())
             {
                 // return 404
-                return NotFound("Error: Contents of Schedule 1 could not be found.");
+                return NotFound("Error: Contents of Schedule 4 could not be found.");
             }
 
              // Else, return result
-            return scheduleFour.ToList();
+            return Ok(scheduleFour);
         }
 
         // GET request that returns the content of Schedule 5
@@ -92,8 +158,15 @@ namespace Constitution1996API.Controllers
             }
 
              // Else, return result
-            return scheduleFive.ToList();
+            return Ok(scheduleFive);
         }
+
+        // GET request that returns the content of Schedule 6
+        // [HttpGet("six")]
+        // public async Task<ActionResult<IEnumerable<ScheduleSix_FullSection>>> GetScheduleSix_TransititionalArrangements()
+        // {
+            
+        // }
 
          // GET request that returns the content of Schedule 7
         [HttpGet("seven")]
@@ -106,11 +179,11 @@ namespace Constitution1996API.Controllers
             if (scheduleSeven.IsNullOrEmpty())
             {
                 // return 404
-                return NotFound("Error: Contents of Schedule 5 could not be found.");
+                return NotFound("Error: Contents of Schedule 7 could not be found.");
             }
 
              // Else, return result
-            return scheduleSeven.ToList();
+            return Ok(scheduleSeven);
         }
     }
 }

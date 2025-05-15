@@ -22,7 +22,7 @@ namespace Constitution1996API.Controllers
         }
 
         // GET request that returns all annexures' ids and titles
-        [HttpGet("all")]
+        [HttpGet("")]
         public async Task<ActionResult<IEnumerable<Annexure>>> GetAnnexures()
         {
             // get the annexures from the DB
@@ -35,7 +35,7 @@ namespace Constitution1996API.Controllers
             }
 
             // return the annexures
-            return annexures.ToList();
+            return Ok(annexures);
         }
 
         // GET request that returns the full content of an annexure
@@ -64,14 +64,17 @@ namespace Constitution1996API.Controllers
                 return NotFound($"Error: Sections for Annexure {annexureID} not found");
             }
 
+            // get subsections, if any
             IEnumerable<AnnexureSubsection> annexureSubsections = await _scheduleRepository.GetAnnexureSubsections(annexureID);
 
+            // if no subsections are found, retun FullAnnexure without subsections
             if (annexureSubsections.IsNullOrEmpty())
             {
-                return new FullAnnexure(annexure.AnnexureID, annexure.AnnexureTitle, sections, null);
+                return Ok(new FullAnnexure(annexure.AnnexureID, annexure.AnnexureTitle, sections, null));
             }
 
-            return new FullAnnexure(annexure.AnnexureID, annexure.AnnexureTitle, sections, annexureSubsections);
+            // Otherwise, return FullAnnexure as intended
+            return Ok(new FullAnnexure(annexure.AnnexureID, annexure.AnnexureTitle, sections, annexureSubsections));
         }
     }
 }
