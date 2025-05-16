@@ -68,7 +68,7 @@ It should open a tab in your default browser on your local machine at ```http://
 
 ## Contributing
 
-Pull requests are welcome. Please check **[contribution.md](https://github.com/moppdev/ZAConstitution1996/CONTRIBUTING.md)** for more information.
+Pull requests are welcome. Please check **[contribution.md](https://github.com/moppdev/ZAConstitution1996/blob/dev/CONTRIBUTING.md)** for more information.
 
 ## License
 
