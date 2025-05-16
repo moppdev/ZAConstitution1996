@@ -49,7 +49,7 @@ git clone https://github.com/moppdev/ZAConstitution1996.git
 **Navigate to** the folder where the repository has been cloned to, and **then** to the Constitution1996 folder:
 
 ```bash
-cd ZAConstitution1996/Constitution1996
+cd ZAConstitution1996/Constitution1996API
 ```
 
 Run the following command **to install packages**:
