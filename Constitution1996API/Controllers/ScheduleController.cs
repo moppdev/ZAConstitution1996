@@ -1,16 +1,16 @@
 using Constitution1996API.DataHandling;
 using Constitution1996API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Constitution1996API.Controllers
 {
-     // Controller that handles all requests related to Schedules
+    // Controller that handles all requests related to Schedules
 
 
     // Define that the following class is a controller
     // Define its main route
+
     [ApiController]
     [Route("api/v1/schedules")]
     public class ScheduleController: ControllerBase
@@ -28,7 +28,7 @@ namespace Constitution1996API.Controllers
         public async Task<ActionResult<IEnumerable<ScheduleOne_NationalFlag>>> GetScheduleOne_NationalFlag()
         {
             // async load the method
-           IEnumerable<ScheduleOne_NationalFlag> scheduleOne = await _scheduleRepository.GetScheduleOne_NationalFlag();
+            IEnumerable<ScheduleOne_NationalFlag> scheduleOne = await _scheduleRepository.GetScheduleOne_NationalFlag();
 
             // check if result is null or empty
             if (scheduleOne.IsNullOrEmpty())
@@ -148,7 +148,7 @@ namespace Constitution1996API.Controllers
         public async Task<ActionResult<IEnumerable<Competency>>> GetScheduleFour_ConcurrentCompetencies()
         {
             // async load the method
-           IEnumerable<Competency> scheduleFive = await _scheduleRepository.GetScheduleFour();
+           IEnumerable<Competency> scheduleFive = await _scheduleRepository.GetScheduleFive();
 
             // check if result is null or empty
             if (scheduleFive.IsNullOrEmpty())
@@ -161,19 +161,47 @@ namespace Constitution1996API.Controllers
             return Ok(scheduleFive);
         }
 
-        // GET request that returns the content of Schedule 6
-        // [HttpGet("six")]
-        // public async Task<ActionResult<IEnumerable<ScheduleSix_FullSection>>> GetScheduleSix_TransititionalArrangements()
-        // {
-            
-        // }
+        //GET request that returns the content of Schedule 6
+        [HttpGet("six")]
+        public async Task<ActionResult<IEnumerable<ScheduleSix_Full>>> GetScheduleSix_TransititionalArrangements()
+        {
+            // Get the contents of schedule 6
+            IEnumerable<ScheduleSix_TransitionalArrangement> scheduleSix = await _scheduleRepository.GetScheduleSix_TransitionalArrangements();
+
+            // if null/empty, return 404
+            if (scheduleSix.IsNullOrEmpty())
+            {
+                return NotFound("Error: Contents of Schedule 6 could not be found.");
+            }
+
+            // Get the subsections, if any, of schedule 6
+            IEnumerable<ScheduleSix_Subsection> scheduleSix_Subsections = await _scheduleRepository.GetScheduleSix_Subsections();
+
+            // if null/empty return full schedule without subsections or clauses
+            if (scheduleSix_Subsections.IsNullOrEmpty())
+            {
+                return Ok(new ScheduleSix_Full(scheduleSix, null, null));
+            }
+
+            // Get the clauses, if any, of schedule 6
+            IEnumerable<ScheduleSix_Clause> scheduleSix_Clauses = await _scheduleRepository.GetScheduleSix_Clauses();
+
+             // if null/empty return full schedule without clauses
+            if (scheduleSix_Clauses.IsNullOrEmpty())
+            {
+                return Ok(new ScheduleSix_Full(scheduleSix, scheduleSix_Subsections, null));
+            }
+
+            // return the full schedule
+            return Ok(new ScheduleSix_Full(scheduleSix, scheduleSix_Subsections, scheduleSix_Clauses));
+        }
 
          // GET request that returns the content of Schedule 7
         [HttpGet("seven")]
         public async Task<ActionResult<IEnumerable<ScheduleSeven_RepealedLaw>>> GetScheduleSeven()
         {
             // async load the method
-          IEnumerable<ScheduleSeven_RepealedLaw> scheduleSeven = await _scheduleRepository.GetScheduleSeven();
+            IEnumerable<ScheduleSeven_RepealedLaw> scheduleSeven = await _scheduleRepository.GetScheduleSeven();
 
             // check if result is null or empty
             if (scheduleSeven.IsNullOrEmpty())

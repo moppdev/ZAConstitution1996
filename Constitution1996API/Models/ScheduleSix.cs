@@ -28,11 +28,13 @@ namespace Constitution1996API.Models
     public class ScheduleSix_Full
     {
         public IEnumerable<ScheduleSix_TransitionalArrangement> TransitionalArrangements {get; set;}
-        public IEnumerable<ScheduleSix_Clause> Clauses {get; set;}
         public IEnumerable<ScheduleSix_Subsection>? Subsections {get; set;} = null;
+        
+        public IEnumerable<ScheduleSix_Clause>? Clauses { get; set; } = null;
 
         // constructor that sets the values
-        public ScheduleSix_Full(IEnumerable<ScheduleSix_TransitionalArrangement> transitionalArrangements, IEnumerable<ScheduleSix_Clause> clauses,  IEnumerable< ScheduleSix_Subsection>? subsections)
+        public ScheduleSix_Full(IEnumerable<ScheduleSix_TransitionalArrangement> transitionalArrangements, IEnumerable<ScheduleSix_Subsection>? subsections,
+        IEnumerable<ScheduleSix_Clause>? clauses)
         {
             this.Subsections = subsections;
             this.TransitionalArrangements = transitionalArrangements;
