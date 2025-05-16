@@ -6,7 +6,7 @@ namespace Constitution1996API.Models
     {
         // fields
         public int ChapterID {get; set;}
-        public string ChapterTitle {get; set;} = "";
+        public string ChapterTitle {get; set;} = "N/A";
         public List<FullSection> FullSections {get; set;}= [];
 
         // constructor that sets the values

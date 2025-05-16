@@ -4,15 +4,15 @@ namespace Constitution1996API.Models
     // which returns the contents of Schedule 3
     public class ScheduleThree_Part
     {
-        public string PartID {get; set;} = "";
-        public string PartName {get; set;} = "";
+        public string PartID {get; set;} = "N/A";
+        public string PartName {get; set;} = "N/A";
     }
 
     public class ScheduleThree_ElectionProcedure
     {
         public int SectionID {get; set;}
         public char SectionThreePart {get; set;}
-        public string SectionTitle {get; set;} = "";
+        public string SectionTitle {get; set;} = "N/A";
         public string? SectionText {get; set;} = null;
     }
 
@@ -20,8 +20,8 @@ namespace Constitution1996API.Models
     {
         public int SectionID {get; set;}
         public char SectionThreePart {get; set;}
-        public string SubsectionID {get; set;} = "";
-        public string SectionText {get; set;} = "";
+        public string SubsectionID {get; set;} = "N/A";
+        public string SectionText {get; set;} = "N/A";
     }
 
     // Model that combines the above three to return the entire Schedule's contents

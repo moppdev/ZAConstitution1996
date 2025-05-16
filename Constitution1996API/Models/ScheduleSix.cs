@@ -5,23 +5,23 @@ namespace Constitution1996API.Models
     public class ScheduleSix_TransitionalArrangement
     {
         public int SectionID {get; set;}
-        public string SectionTitle {get; set;} = "";
+        public string SectionTitle {get; set;} = "N/A";
         public string? SectionText {get; set;} = null;
     }
 
     public class ScheduleSix_Clause
     {
         public int SectionID {get; set;}
-        public string SubsectionID {get; set;} = "";
-        public string ClauseID {get; set;} = "";
-        public string ClauseText {get; set;} = "";
+        public string SubsectionID {get; set;} = "N/A";
+        public string ClauseID {get; set;} = "N/A";
+        public string ClauseText {get; set;} = "N/A";
     }
 
     public class ScheduleSix_Subsection
     {
         public int SectionID {get; set;}
-        public string SubsectionID {get; set;} = "";
-        public string SubsectionText {get; set;} = "";
+        public string SubsectionID {get; set;} = "N/A";
+        public string SubsectionText {get; set;} = "N/A";
     }
 
     // Model that combines the above three to return the entire Schedule's contents

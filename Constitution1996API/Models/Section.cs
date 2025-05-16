@@ -6,7 +6,7 @@ namespace Constitution1996API.Models
         // fields
         public int SectionID {get; set;}
         public int ChapterID {get; set;}
-        public string SectionTitle {get; set;} = "";
+        public string SectionTitle {get; set;} = "N/A";
         public string? SectionText {get; set;} = null;
     }
 }

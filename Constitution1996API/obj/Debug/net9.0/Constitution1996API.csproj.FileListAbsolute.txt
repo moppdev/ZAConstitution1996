@@ -92,3 +92,11 @@ C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\ne
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.dll
 C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.Sinks.Console.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.AspNetCore.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.Extensions.Hosting.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.Extensions.Logging.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.Formatting.Compact.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.Settings.Configuration.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.Sinks.Debug.dll
+C:\Users\Marco Oppel\Desktop\ZAConstitution1996\Constitution1996API\bin\Debug\net9.0\Serilog.Sinks.File.dll

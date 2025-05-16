@@ -5,15 +5,15 @@ namespace Constitution1996API.Models
     public class ScheduleTwo_OathsAffirmation
     {
         public int SectionID {get; set;}
-        public string SectionTitle {get; set;} = "";
+        public string SectionTitle {get; set;} = "N/A";
         public string? SectionText {get; set;} = null;
     }
 
     public class ScheduleTwo_Subsection
     {
         public int SectionID {get; set;}
-        public string SubsectionID {get; set;} = "";
-        public string SubsectionText {get; set;} = "";
+        public string SubsectionID {get; set;} = "N/A";
+        public string SubsectionText {get; set;} = "N/A";
     }
 
     // Model that combines the above two to return the entire Schedule's contents

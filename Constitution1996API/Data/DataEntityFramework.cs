@@ -55,7 +55,6 @@ namespace Constitution1996API.DataHandling
             // Check if the connection is configured, otherwise create a connection
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer(_config.GetConnectionString("DefaultConnection"),
                         optionsBuilder => optionsBuilder.EnableRetryOnFailure());
             }

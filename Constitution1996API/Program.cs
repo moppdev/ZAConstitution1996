@@ -1,8 +1,17 @@
 using System.Threading.RateLimiting;
 using Constitution1996API.DataHandling;
 using Microsoft.AspNetCore.RateLimiting;
+using Serilog;
 
+// Log configuration
+var logger = new LoggerConfiguration().MinimumLevel.Information().WriteTo.Console().CreateLogger();
+
+// Create the App's builder
 var builder = WebApplication.CreateBuilder(args);
+
+// Add proper logging
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 // Add Controllers, look for endpoints and add swagger
 builder.Services.AddControllers();
@@ -20,10 +29,6 @@ builder.Services.AddCors((options) =>
                     .AllowCredentials();
             });
     });
-
-// Add proper logging
-
-
 
 // Initialize and connect the repository interfaces to their classes
 builder.Services.AddScoped<IAmendmentRepository, AmendmentRepository>();

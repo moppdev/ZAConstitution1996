@@ -5,12 +5,12 @@ namespace Constitution1996API.Models
     public class ScheduleOne_NationalFlag
     {
         public int SectionID {get; set;}
-        public string SectionText {get; set;} = "";
+        public string SectionText {get; set;} = "N/A";
     }
 
     public class ScheduleOneA_GeoAreasProvince
     {
-        public string Province {get; set;} = "";
-        public string MapCSV {get; set;} = "";
+        public string Province {get; set;} = "N/A";
+        public string MapCSV {get; set;} = "N/A";
     }
 }

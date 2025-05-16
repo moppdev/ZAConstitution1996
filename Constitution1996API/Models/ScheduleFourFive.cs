@@ -4,7 +4,7 @@ namespace Constitution1996API.Models
     // Schedule Four and Five share the same format
     public class Competency
     {
-        public string PartID {get; set;} = "";
-        public string PartCSV {get; set;} = "";
+        public string PartID {get; set;} = "N/A";
+        public string PartCSV {get; set;} = "N/A";
     }
 }

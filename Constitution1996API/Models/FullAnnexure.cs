@@ -9,7 +9,7 @@ namespace Constitution1996API.Models
         // - If sectionText is null, it indicates that there are subsections present.
         // - If sectionText is not null, it means there are no subsections.
         public char AnnexureID {get; set;}
-        public string AnnexureTitle {get; set;} = "";
+        public string AnnexureTitle {get; set;} = "N/A";
 
         public IEnumerable<AnnexureSection>? AnnexureSections {get; set;} = null;
 

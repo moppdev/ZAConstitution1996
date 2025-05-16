@@ -6,6 +6,6 @@ namespace Constitution1996API.Models
     {
         // fields
         public char AnnexureID {get; set;}
-        public string AnnexureTitle {get; set;} = "";
+        public string AnnexureTitle {get; set;} = "N/A";
     }
 }

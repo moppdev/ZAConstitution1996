@@ -100,7 +100,7 @@ namespace Constitution1996API.DataHandling
 
 
 
-        /// ANNEXURES //
+        /// ANNEXURES ///
         // gets the annexures' ids and titles
         public async Task<IEnumerable<Annexure>> GetAnnexures()
         {

@@ -10,7 +10,7 @@ namespace Constitution1996API.Models
     // - Clauses are also nullable and depend on whether there are subsections with clauses.
     // - If sectionText is not null, it means there are no subsections or clauses.
         public int sectionID {get; set;} = 0;
-        public string sectionTitle {get; set;} = "";
+        public string sectionTitle {get; set;} = "N/A";
 
         public string? sectionText {get; set;} = null;
 

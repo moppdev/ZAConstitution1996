@@ -4,7 +4,7 @@ namespace Constitution1996API.Models
     // which returns Schedule 7's contents
     public class ScheduleSeven_RepealedLaw
     {
-        public string ActNum {get; set;} = "";
-        public string Title {get; set;} = "";
+        public string ActNum {get; set;} =  "N/A";
+        public string Title {get; set;} =  "N/A";
     }
 }
