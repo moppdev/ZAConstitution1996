@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Constitution1996API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+959369000956cb9420ea327877be7377c4c3ae2f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c02a032a7a2be73f2f4dca6de05306c839b252b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Constitution1996API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Constitution1996API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
