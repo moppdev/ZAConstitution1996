@@ -21,6 +21,24 @@ namespace Constitution1996API.Controllers
             _scheduleRepository = scheduleRepository;
         }
 
+        // GET request that returns the list of all schedules
+        [HttpGet("")]
+        public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedules()
+        {
+            // async load the method
+            IEnumerable<Schedule> schedules = await _scheduleRepository.GetSchedules();
+
+            // check if result is null or empty
+            if (schedules.IsNullOrEmpty())
+            {
+                // return 404
+                return NotFound("Error: No schedules could be found.");
+            }
+
+             // Else, return result
+            return Ok(schedules);
+        }
+
         // GET request that returns the content of Schedule 1
         [HttpGet("one")]
         public async Task<ActionResult<IEnumerable<ScheduleOne_NationalFlag>>> GetScheduleOne_NationalFlag()

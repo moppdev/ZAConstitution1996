@@ -19,6 +19,13 @@ namespace Constitution1996API.DataHandling
         }
 
         /// SCHEDULES ///
+
+        // gets the list of all schedules
+        public async Task<IEnumerable<Schedule>> GetSchedules()
+        {
+            return await _entityFramework.Schedules.FromSqlRaw($"[ScheduleSchema].spGetSchedules").ToListAsync();
+        }
+        
         // gets the contents of Schedule 1, which describes the national flag's appearance
         public async Task<IEnumerable<ScheduleOne_NationalFlag>> GetScheduleOne_NationalFlag()
         {

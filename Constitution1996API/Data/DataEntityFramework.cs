@@ -34,8 +34,8 @@ namespace Constitution1996API.DataHandling
         public virtual DbSet<Annexure> Annexures {get; set;}
         public virtual DbSet<AnnexureSection> AnnexureSections {get; set;}
         public virtual DbSet<AnnexureSubsection> AnnexureSubsections {get; set;}
-
-        public virtual DbSet<ScheduleOne_NationalFlag> ScheduleOne {get; set;}
+        public virtual DbSet<Schedule> Schedules { get; set; }
+        public virtual DbSet<ScheduleOne_NationalFlag> ScheduleOne { get; set; }
         public virtual DbSet<ScheduleOneA_GeoAreasProvince> ScheduleOneA {get; set;}
         public virtual DbSet<ScheduleTwo_OathsAffirmation> ScheduleTwo_OathsAffirmations {get; set;}
         public virtual DbSet<ScheduleTwo_Subsection> ScheduleTwo_Subsections {get; set;}
@@ -77,6 +77,7 @@ namespace Constitution1996API.DataHandling
             modelBuilder.Entity<AnnexureSection>().HasKey(["AnnexureID", "SectionID"]);
             modelBuilder.Entity<AnnexureSubsection>().HasKey(["SectionID", "SubsectionID"]);
 
+            modelBuilder.Entity<Schedule>().HasKey("ScheduleID");
             modelBuilder.Entity<ScheduleOneA_GeoAreasProvince>().HasNoKey().ToView(null);
             modelBuilder.Entity<ScheduleOne_NationalFlag>().HasKey("SectionID");
             modelBuilder.Entity<ScheduleTwo_OathsAffirmation>().HasKey("SectionID");

@@ -81,6 +81,13 @@ GO
 	//////////////////
 */
 
+CREATE OR ALTER PROCEDURE ScheduleSchema.spGetSchedules
+AS
+BEGIN
+	SELECT * FROM ScheduleSchema.Schedules; /* Get a list of all Schedules */
+END
+GO
+
 CREATE OR ALTER PROCEDURE ScheduleSchema.spGetScheduleOne_NationalFlag
 AS
 BEGIN

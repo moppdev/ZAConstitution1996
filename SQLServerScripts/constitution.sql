@@ -8,8 +8,6 @@
 	Create and use the Constitution1996 DB, and create the schemas
 	////////////////////////
 */
-
-
 DROP DATABASE IF EXISTS Constitution1996;
 
 CREATE DATABASE Constitution1996;
@@ -103,6 +101,13 @@ GO
 
 
 /* ScheduleSchema */ 
+
+CREATE TABLE [ScheduleSchema].Schedules
+(
+	ScheduleID varchar(2) PRIMARY KEY,
+	ScheduleTitle nvarchar(200) NOT NULL
+);
+GO
 
 CREATE TABLE [ScheduleSchema].ScheduleOne_NationalFlag
 (
@@ -3981,6 +3986,18 @@ GO
 	ScheduleSchema 
 	/////////////// 
 */
+
+INSERT INTO [ScheduleSchema].Schedules(ScheduleID, ScheduleTitle)
+VALUES
+('1', 'Schedule 1: National Flag'),
+('1A', 'Schedule 1A: Geographical Areas of Provinces'),
+('2', 'Schedule 2: Oaths and Solemn Affirmations'),
+('3', 'Schedule 3: Election Procedures'),
+('4', 'Schedule 4: Functional Areas of Concurrent National and Provincial Legislative Competence'),
+('5', 'Schedule 5: Functional Areas of Exclusive Provincial Legislative Competence'),
+('6', 'Schedule 6: Transitional Arrangements'),
+('7', 'Schedule 7: Laws Repealed');
+GO
 
 /* /////////////// Schedule 1's contents /////////// */
 INSERT INTO [ScheduleSchema].ScheduleOne_NationalFlag (SectionID, SectionText)
