@@ -48,7 +48,7 @@ namespace Constitution1996API.DataHandling
         public async Task<IEnumerable<ScheduleTwo_Subsection>> GetScheduleTwo_Subsections(int sectionID)
         {
             SqlParameter param = new SqlParameter("@SectionID", sectionID);
-            return await _entityFramework.ScheduleTwo_Subsections.FromSqlRaw($"[ScheduleSchema].spGetScheduleTwo_Subsection @SectionID", param).ToListAsync();
+            return await _entityFramework.ScheduleTwo_Subsections.FromSqlRaw($"[ScheduleSchema].spGetScheduleTwo_Subsections @SectionID", param).ToListAsync();
         }
 
         // gets the parts of Schedule 3
