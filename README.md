@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/419fe44e-d617-4f13-9c53-9d43ca63f33f)# ZAConstitution1996
+# ZAConstitution1996
 
 ![.NET](https://img.shields.io/badge/.NET-512BD4.svg?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D.svg?style=for-the-badge&logo=Swagger&logoColor=black)
